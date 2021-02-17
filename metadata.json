@@ -1,0 +1,34 @@
+{
+    "name": "SDHMenu",
+    "version": "1.0.0",
+    "description": "",
+    "long_description_content_type": "text/markdown",
+    "author": "Gideon Tong",
+    "author_email": "gideon@gideontong.com",
+    "url": "https://www.github.com/gideontong/SDHMenu",
+    "packages": [
+        "SDHMenu"
+    ],
+    "package_data": {},
+    "package_dir": {
+        "SDHMenu": "SDHMenu"
+    },
+    "include_package_data": true,
+    "python_requires": ">=3.7.*",
+    "zip_safe": false,
+    "classifiers": [
+        "Development Status :: 4 - Beta",
+        "Environment :: Web Environment",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+        "Topic :: Text Processing :: Indexing"
+    ],
+    "cmdclass": {},
+    "extras_require": {}
+}
