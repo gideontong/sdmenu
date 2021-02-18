@@ -5,6 +5,7 @@ from sdmenu.classes import menu_item
 from sdmenu.classes.nutrition import find_nutrition_by_url
 from typing import List
 
+DAY_INDICIES = {'Sun': 0, 'Mon': 1, 'Tue': 2, 'Wed': 3, 'Thu': 4, 'Fri': 5, 'Sat': 6}
 BASE_URL = 'https://hdh-web.ucsd.edu'
 DEFAULT_PARSER = 'html.parser'
 HOURS_ID = 'hoursContainer'
@@ -53,6 +54,25 @@ def parse_web_items(tag: Tag) -> List[menu_item]:
     return items
 
 
+def parse_hours(tag: Tag) -> List[List[int]]:
+    '''Parse <div> hours'''
+    hours = [[-1, -1]] * 7
+    try:
+        # Hardcoded traversal, since hours are not critical
+        for option in tag.div.ul.li.contents:
+            if type(option) is tag:
+                date_string = option.contents[0].strip()
+                weekday_string = date_string.split(' ')[0]
+                if weekday_string in DAY_INDICIES:
+                    weekday = DAY_INDICIES[weekday_string]
+                else:
+                    continue
+                date_string = date_string[weekday_string + 1:]
+                # TODO: update the hours
+    except:
+        return hours
+
+
 class page_object:
     def __init__(self, name: str, time_of_day: str, hours: List[List[int]], menu_items: List[menu_item]) -> 'page_object':
         self.name = name
@@ -70,6 +90,5 @@ class page_object:
         menu_items = list()
         for child in menu:
             menu_items.extend(parse_web_items(child))
-        # TODO: Parse hours
-        hours = list()
+        hours = parse_hours(hours_soup)
         return cls(dining_hall, time_of_day, hours, menu_items)
