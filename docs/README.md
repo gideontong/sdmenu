@@ -18,6 +18,6 @@ Successfully installed SDHMenu-1.0.0
 >>> my_menu = menu()
 <menu {'64 Degrees', 'Cafe Ventanas', 'Canyon Vista', ...}>
 
->>> my_menu.get('64')
+>>> my_menu.get('64 Degrees')
 [<menu_item 'Avocado Toast'>, <menu_item 'Bacon Bobcat Sandwich'>, ...]
 ```
