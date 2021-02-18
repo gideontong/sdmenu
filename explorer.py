@@ -22,3 +22,14 @@ for child in menu1:
     print(len(children))
     for item in children:
         print(type(item), item.name, item.attrs)
+        item = [x for x in item.contents if type(x) is Tag]
+        arr = item.pop(0)
+        print(arr)
+        for thing in item:
+            print(type(thing), thing.name, thing.attrs)
+            if thing.name == 'li':
+                things = [x for x in thing.contents if type(x) is Tag]
+                for i in things:
+                    print(type(i), i.name, i.attrs)
+                exit()
+        exit()

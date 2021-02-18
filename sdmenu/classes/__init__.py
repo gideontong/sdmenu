@@ -1,3 +1,4 @@
+from sdmenu.classes.nutrition import nutrition_item
 from typing import List
 
 NUT_ALLOWED = {
@@ -38,15 +39,15 @@ class nutrition_data:
 
 
 class menu_item:
-    def __init__(self, name: str, price: float, nutrition: List[str], link: str) -> 'menu_item':
+    def __init__(self, name: str, price: float, nutrition: List[nutrition_item], link: str) -> 'menu_item':
         self.name = name
         self.price = price
         self.nutrition = nutrition
         self.link = link
-        self.data = None
+        self.nutrition_data = None
 
     def get_nutrition_data(self) -> nutrition_data:
         '''Get nutrition data of a menu item'''
-        if not self.data:
-            self.data = nutrition_data.from_url(self.link)
-        return self.data
+        if not self.nutrition_data:
+            self.nutrition_data = nutrition_data.from_url(self.link)
+        return self.nutrition_data
