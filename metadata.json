@@ -1,6 +1,6 @@
 {
     "name": "sdmenu",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A simple way to query UC San Diego's HDH dining halls",
     "long_description_content_type": "text/markdown",
     "author": "Gideon Tong",

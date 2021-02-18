@@ -12,6 +12,7 @@ class page_object:
 
     @classmethod
     def from_web_call(cls, dining_hall: str, time_of_day: str, page: Response):
+        '''Create a page object directly from HTML'''
         # TODO: Parse page
         hours = list()
         menu_items = list()
