@@ -16,3 +16,8 @@ class menu:
         '''Whether or not the restaurant has the item at the moment'''
         # TODO: Write this function
         pass
+
+    def find(self) -> List[menu_item]:
+        '''Search for menu items'''
+        # TODO: Write this function
+        pass

@@ -13,11 +13,22 @@ Successfully installed sdmenu-1.0.0
 
 ## Example
 
+This example is based off the menu for [64 Degrees](https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/MenuItem/64), which you can find [here](https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/MenuItem/64).
+
 ```py
 >>> from sdmenu import menu
 >>> my_menu = menu()
 <menu {'64 Degrees', 'Cafe Ventanas', 'Canyon Vista', ...}>
 
->>> my_menu.get('64 Degrees')
+>>> items = my_menu.get('64 Degrees')
 [<menu_item 'Avocado Toast'>, <menu_item 'Bacon Bobcat Sandwich'>, ...]
+
+>>> items[0].price
+3.5
+
+>>> my_menu.has('64 Degrees', 'Hibachi Chicken')
+True
+
+>>> my_menu.find('64 Degrees', 'Tacos')
+[<menu_item 'Baja Fishless Tacos'>, ...]
 ```
