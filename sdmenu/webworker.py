@@ -58,7 +58,7 @@ class menu_cache:
     def get(self, dining_hall: str, time_of_day='Auto') -> page_object:
         '''Get a menu page, considering cache time'''
         if dining_hall not in DINING_HALLS:
-            raise KeyError(f'{dining_hall} is not a known dining hall!')raise KeyError
+            raise KeyError(f'{dining_hall} is not a known dining hall!')
         if time_of_day not in ALLOWED_TIMES:
             raise KeyError(
                 f'{time_of_day} invalid, must be one of: Auto, Breakfast, Lunch, Dinner')
