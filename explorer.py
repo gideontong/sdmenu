@@ -30,6 +30,9 @@ for child in menu1:
             if thing.name == 'li':
                 things = [x for x in thing.contents if type(x) is Tag]
                 for i in things:
-                    print(type(i), i.name, i.attrs)
+                    # print(type(i), i.name, i.attrs)
+                    if i.name == 'a':
+                        print(i['href'])
+                        print(i.contents[0].strip())
                 exit()
         exit()

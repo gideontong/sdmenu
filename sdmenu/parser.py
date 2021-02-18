@@ -2,8 +2,10 @@ from bs4 import BeautifulSoup as Soup
 from bs4.element import Tag
 from requests.models import Response
 from sdmenu.classes import menu_item
+from sdmenu.classes.nutrition import find_nutrition_by_url
 from typing import List
 
+BASE_URL = 'https://hdh-web.ucsd.edu'
 DEFAULT_PARSER = 'html.parser'
 HOURS_ID = 'hoursContainer'
 MENU_ID = 'menuContainer'
@@ -13,18 +15,22 @@ def parse_one_item(tag: Tag) -> menu_item:
     '''Parse a <li> listing to a menu item'''
     name = str()
     price = float()
-    link = str()
     nutrition = list()
+    link = str()
     for item in tag.contents:
         if item.name == 'a':
-            # TODO: name
-            # TODO: price
-            # TODO: link
-            pass
+            text = item.contents[0].strip() # Bacon Bobcat Sandwich $4.25
+            if 'href' in item.attrs:
+                link = BASE_URL + item['href']
+            price_str = text.split(' ')[-1] # $4.25
+            name = text[:len(name) - price_str - 1] # Bacon Bobcat Sandwich
+            price = float(price_str[1:]) # 4.25
         elif item.name == 'img':
-            # TODO: nutritions
-            pass
-    return menu_item()
+            if 'href' in item.attrs:
+                icon_item = find_nutrition_by_url(item['href'])
+                if icon_item:
+                    nutrition.append(icon_item)
+    return menu_item(name, price, nutrition, link)
 
 
 def parse_item_list(tag: Tag) -> List[menu_item]:
@@ -64,6 +70,6 @@ class page_object:
         menu_items = list()
         for child in menu:
             menu_items.extend(parse_web_items(child))
-        # TODO: Parse page
+        # TODO: Parse hours
         hours = list()
         return cls(dining_hall, time_of_day, hours, menu_items)
