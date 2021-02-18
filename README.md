@@ -16,7 +16,7 @@ Successfully installed SDHMenu-1.0.0
 ```py
 >>> from SDHMenu import menu
 >>> my_menu = menu()
-<menu {64 Degrees, Cafe Ventanas, Canyon Vista, ...}>
+<menu {'64 Degrees', 'Cafe Ventanas', 'Canyon Vista', ...}>
 
 >>> my_menu.get('64')
 [<menu_item 'Avocado Toast'>, <menu_item 'Bacon Bobcat Sandwich'>, ...]
