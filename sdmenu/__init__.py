@@ -1,5 +1,5 @@
-from SDHMenu.classes import menu_item
-from SDHMenu.webworker import menu_cache
+from sdmenu.classes import menu_item
+from sdmenu.webworker import menu_cache
 from typing import List
 
 

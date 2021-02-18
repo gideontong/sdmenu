@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from SDHMenu.parser import page_object
+from sdmenu.parser import page_object
 from typing import Tuple
 
 ALLOWED_DINING_HALLS = {
