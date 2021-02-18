@@ -1,12 +1,12 @@
 from typing import List
 
-NUTRITION_POSITIONAL_ARGUMENTS = {
+NUT_ALLOWED = {
     'calories': int,
     'cholesterol': float,
     'fat_calories': int,
     'fat': float,
     'fiber': float,
-    'ingredients': float,
+    'ingredients': list,
     'protein': float,
     'saturated_fat': float,
     'serving_size': str,
@@ -26,13 +26,13 @@ class nutrition_data:
         protein, ingredients
         '''
         for arg in kwargs:
-            pass
-        self.calories = kwargs['calories'] if 'calories' in kwargs else None
-        self.fat_calories = kwargs['fat_calories'] if 'fat_calories'
+            if arg in NUT_ALLOWED and type(kwargs[arg]) is NUT_ALLOWED[arg]:
+                setattr(self, arg, kwargs[arg])
 
     @classmethod
     def from_url(self, url: str) -> 'nutrition_data':
         '''Pass in a UCSD HDH nutrition URL for parsing'''
+        # TODO: Write this function
         pass
 
 
