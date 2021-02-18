@@ -4,7 +4,7 @@ from os import system
 from setuptools import setup
 from sys import argv
 
-metadata = load(open('metadata.json'))
+metadata = load(open('config/metadata.json'))
 
 if argv[-1] == 'publish':
     system('python setup.py sdist bdist_wheel')

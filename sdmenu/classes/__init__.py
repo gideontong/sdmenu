@@ -1,6 +1,7 @@
 from typing import List
 
 NUT_ALLOWED = {
+    'allergens': list,
     'calories': int,
     'cholesterol': float,
     'fat_calories': int,
@@ -23,7 +24,7 @@ class nutrition_data:
 
         Supported: calories, fat_calories, serving_size, fat, saturated_fat,
         trans_fat, cholesterol, sodium, total_carbohydrates, fiber, sugars,
-        protein, ingredients
+        protein, ingredients, allergens
         '''
         for arg in kwargs:
             if arg in NUT_ALLOWED and type(kwargs[arg]) is NUT_ALLOWED[arg]:

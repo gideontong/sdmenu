@@ -4,6 +4,7 @@ from bs4.element import Tag, NavigableString
 soup = BS(file, 'html.parser')
 menu = soup.find(id='menuContainer')
 print(type(menu))
+'''
 for child in menu:
     if (type(child) == Tag):
         # TAGS ARE THE ONE WE WANT, we want to filter divs
@@ -13,3 +14,11 @@ for child in menu:
     else:
         print('degen', type(child))
     # print(type(child), type(child.string), str(child)[:15], str(child.string)[:15])
+'''
+menu1 = [child for child in menu if type(child) is Tag]
+print(len(menu1))
+for child in menu1:
+    children = [item for item in child.contents if type(item) is Tag]
+    print(len(children))
+    for item in children:
+        print(type(item), item.name, item.attrs)

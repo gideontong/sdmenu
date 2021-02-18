@@ -5,7 +5,11 @@
     "long_description_content_type": "text/markdown",
     "author": "Gideon Tong",
     "author_email": "gideon@gideontong.com",
-    "url": "https://www.github.com/gideontong/SDHMenu",
+    "url": "https://sdmenu.online",
+    "project_urls": {
+        "Source": "https://github.com/gideontong/sdmenu/",
+        "Tracker": "https://github.com/gideontong/sdmenu/issues"
+    },
     "packages": [
         "sdmenu"
     ],
