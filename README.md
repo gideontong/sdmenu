@@ -28,7 +28,4 @@ This example is based off the menu for [64 Degrees](https://hdh-web.ucsd.edu/din
 
 >>> my_menu.has('64 Degrees', 'Hibachi Chicken')
 True
-
->>> my_menu.find('64 Degrees', 'Tacos')
-[<menu_item 'Baja Fishless Tacos'>, ...]
 ```

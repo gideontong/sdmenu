@@ -15,7 +15,7 @@ MENU_ID = 'menuContainer'
 def parse_one_item(tag: Tag) -> menu_item:
     '''Parse a <li> listing to a menu item'''
     name = str()
-    price = float()
+    price = 0
     nutrition = list()
     link = str()
     for item in tag.contents:
@@ -24,8 +24,11 @@ def parse_one_item(tag: Tag) -> menu_item:
             if 'href' in item.attrs:
                 link = BASE_URL + item['href']
             price_str = text.split(' ')[-1] # $4.25
-            name = text[:len(name) - price_str - 1] # Bacon Bobcat Sandwich
-            price = float(price_str[1:]) # 4.25
+            name = text[:len(name) - len(price_str) - 1] # Bacon Bobcat Sandwich
+            try:
+                price = float(price_str[1:]) # 4.25
+            except:
+                pass
         elif item.name == 'img':
             if 'href' in item.attrs:
                 icon_item = find_nutrition_by_url(item['href'])

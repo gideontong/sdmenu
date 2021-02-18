@@ -32,7 +32,7 @@ def get_current_time() -> Tuple[int, int, int, int, int]:
 
 
 def get_current_time_of_day():
-    year, month, day, weekday, hour = get_current_time()
+    _, _, _, weekday, hour = get_current_time()
     if weekday > 0 or weekday < 6:
         if hour < 11:
             return 'Breakfast'
@@ -47,13 +47,17 @@ def get_current_time_of_day():
 
 class menu_cache:
     def __init__(self):
-        self.year, self.month, self.day, weekday, hour = get_current_time()
+        self.year, self.month, self.day, _, _ = get_current_time()
         self.cache = dict()
 
     def needs_update(self) -> bool:
         '''Check if the combination needs an update'''
-        year, month, day, weekday, hour = get_current_time()
+        year, month, day, _, _ = get_current_time()
         return self.year != year or self.month != month or self.day != day
+
+    def flush_cache(self) -> None:
+        '''Flush cache'''
+        self.cache = dict()
 
     def get(self, dining_hall: str, time_of_day='Auto') -> page_object:
         '''Get a menu page, considering cache time'''
@@ -64,9 +68,10 @@ class menu_cache:
                 f'{time_of_day} invalid, must be one of: Auto, Breakfast, Lunch, Dinner')
         if time_of_day == 'Auto':
             time_of_day = get_current_time_of_day()
-        if dining_hall in self.cache:
+        if dining_hall in self.cache and not self.needs_update():
             if time_of_day in self.cache[dining_hall]:
                 return self.cache[dining_hall][time_of_day]
+        self.flush_cache()
         return self.get_menu_page(dining_hall, time_of_day)
 
     def store_menu_page(self, dining_hall: str, time_of_day: str, page: page_object) -> None:
@@ -74,6 +79,7 @@ class menu_cache:
         if dining_hall not in self.cache:
             self.cache[dining_hall] = dict()
         self.cache[dining_hall][time_of_day] = page
+        self.year, self.month, self.day, _, _ = get_current_time()
 
     def get_menu_page(self, dining_hall: str, time_of_day='Auto') -> page_object:
         '''Returns a menu page for a given dining hall and time of day'''

@@ -7,7 +7,7 @@ GLOBAL_ITEMS = [
         'alt': 'Legend: Vegan Icon'
     },
     {
-        'vegan': 'Vegetarian',
+        'name': 'Vegetarian',
         'icon': 'https://hdh-web.ucsd.edu/images/Dining/allergenicons/Vegetarian_40x40.png',
         'alt': 'Legend: Vegetarian Icon'
     },
